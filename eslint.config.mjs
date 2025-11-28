@@ -10,12 +10,8 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends(
-    "next/core-web-vitals",
-    "next/typescript",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
-  ),
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends("prettier"),
 
   {
     rules: {
@@ -24,8 +20,8 @@ const eslintConfig = [
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_"
-        }
+          caughtErrorsIgnorePattern: "^_",
+        },
       ],
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/explicit-function-return-type": "off",
@@ -33,7 +29,7 @@ const eslintConfig = [
       "@typescript-eslint/no-non-null-assertion": "warn",
       "@typescript-eslint/consistent-type-imports": [
         "error",
-        { prefer: "type-imports" }
+        { prefer: "type-imports" },
       ],
 
       "react/react-in-jsx-scope": "off",
@@ -45,14 +41,7 @@ const eslintConfig = [
       "no-debugger": "error",
       "prefer-const": "error",
       "no-var": "error",
-
-      "prettier/prettier": [
-        "error",
-        {
-          endOfLine: "auto"
-        }
-      ]
-    }
+    },
   },
 
   {
@@ -67,9 +56,9 @@ const eslintConfig = [
       "*.config.js",
       "*.config.mjs",
       "coverage/**",
-      ".husky/**"
-    ]
-  }
+      ".husky/**",
+    ],
+  },
 ];
 
 export default eslintConfig;
