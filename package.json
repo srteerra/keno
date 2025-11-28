@@ -12,7 +12,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "postinstall": "husky || echo 'Husky not installed yet'"
   },
   "dependencies": {
     "daisyui": "^5.5.5",

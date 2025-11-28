@@ -1,1 +1,9 @@
-npm run pre-push
+echo '🚀 Analyzing all before push...'
+
+echo '🔍 Analyzing TypeScript...'
+npm run type-check && npm run lint || (
+  echo '❌ TypeScript found errors!'
+  false
+)
+
+echo '✅ All good!'
