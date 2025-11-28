@@ -14,7 +14,7 @@ const eslintConfig = [
     "next/core-web-vitals",
     "next/typescript",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended" // Prettier debe ser el último para evitar conflictos
+    "plugin:prettier/recommended"
   ),
 
   {
@@ -36,8 +36,8 @@ const eslintConfig = [
         { prefer: "type-imports" }
       ],
 
-      "react/react-in-jsx-scope": "off", // Next.js no requiere importar React
-      "react/prop-types": "off", // Usamos TypeScript
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
 
