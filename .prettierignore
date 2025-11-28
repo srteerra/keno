@@ -1,0 +1,32 @@
+# Dependencies
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+.next
+out
+build
+dist
+.cache
+
+# Environment files
+.env
+.env*.local
+
+# Logs
+*.log
+
+# Testing
+coverage
+
+# Other
+.DS_Store
+*.pem
+.vercel
+.turbo
+next-env.d.ts
+public/**/*.svg
+public/**/*.png
+public/**/*.jpg
