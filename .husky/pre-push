@@ -1,1 +1,4 @@
-npm run type-check
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run pre-push
