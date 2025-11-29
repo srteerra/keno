@@ -2,7 +2,7 @@
 
 > Daily productivity tips for developers, powered by AI
 
-A modern web application that delivers practical, immediately actionable productivity tips to help developers work smarter. Built with Next.js and powered by the [Keno API](https://github.com/srteerra/keno-api).
+A modern web application that delivers practical, immediately actionable productivity tips to help developers work smarter. Built with Next.js and powered by AI.
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)](https://www.typescriptlang.org/)
