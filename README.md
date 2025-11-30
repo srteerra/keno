@@ -58,29 +58,6 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 
 ---
 
-## 📂 Project Structure
-
-```
-keno/
-├── app/                    # Next.js App Router
-│   ├── page.tsx           # Home page
-│   ├── layout.tsx         # Root layout
-│   └── api/               # API routes (if any)
-├── components/            # React components
-│   ├── ui/               # UI components (shadcn)
-│   ├── TipCard.tsx       # Main tip display
-│   ├── CategorySelector.tsx
-│   └── ...
-├── lib/                   # Utility functions
-│   ├── api.ts            # API client
-│   ├── utils.ts          # Helper functions
-│   └── types.ts          # TypeScript types
-├── public/               # Static assets
-└── styles/               # Global styles
-```
-
----
-
 ## 🎨 Environment Variables
 
 Create a `.env.local` file:
