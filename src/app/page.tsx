@@ -1,84 +1,55 @@
-'use client';
-
-import { useState } from 'react';
-import { Tip } from '@/lib/schemas/tip.schema';
+"use client"
+import Image from "next/image";
+import ItsFine from "../assets/images/fine.png";
+import { IoIosArrowDown } from "react-icons/io";
+import { useTips } from "@/hooks/useTips";
+import React, { useEffect } from "react";
+import { useTipStore } from "@/stores/Tip.store";
+import { Header } from "@/components/layout/header";
+import { CategoryBadge } from "@/components/tips/category-badge";
+import { MainContainer } from "@/components/tips/main-container";
+import { Category } from "@/types/category";
+import { Examples } from "@/components/tips/examples";
 
 export default function Home() {
-  const [tips, setTips] = useState<Tip[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState('react');
+  const { getTip } = useTips();
+  const tip = useTipStore(state => state.tip);
+  const showExamples = useTipStore(state => state.showExamples);
 
-  const generateTips = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch('/api/tips', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ category, count: 3 })
-      });
+  const examplesCount = tip?.examples?.length ?? 0;
 
-      const data = await res.json();
-      setTips(data.tips || []);
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleNewTip = async (type: Category) => {
+    await getTip(type);
+  }
+
+  useEffect(() => {
+    getTip();
+  }, []);
 
   return (
-    <main className="container mx-auto p-8 max-w-4xl">
-      <h1 className="text-4xl font-bold mb-8">Dev Productivity Tips</h1>
+    <div className={"h-full"}>
+      <Header />
 
-      <div className="mb-6 flex gap-4">
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="border rounded px-4 py-2"
-        >
-          <option value="react">React</option>
-          <option value="git_command">Git</option>
-          <option value="linux">Linux</option>
-          <option value="terminal">Terminal</option>
-          <option value="python">Python</option>
-        </select>
+      <main className="flex justify-center flex-col items-center mt-18">
+        <Image src={ItsFine} alt={"It is fine"} width={200} />
 
-        <button
-          onClick={generateTips}
-          disabled={loading}
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
-        >
-          {loading ? 'Generando...' : 'Generar Tips'}
-        </button>
-      </div>
+        <div className={'flex gap-2 my-6'}>
+          {Object.values(Category).map((category: Category) =>
+            <CategoryBadge onClick={() => handleNewTip(category)} key={category} type={category} />
+          )}
+        </div>
 
-      <div className="grid gap-4">
-        {tips.map((tip, index) => (
-          <div key={index} className="border rounded-lg p-6 shadow-sm">
-            <div className="flex justify-between items-start mb-2">
-              <h2 className="text-xl font-bold">{tip.title}</h2>
-              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                {tip.difficulty}
-              </span>
-            </div>
-            <p className="text-gray-700 mb-3">{tip.content}</p>
+        <MainContainer />
 
-            {tip.codeExample && (
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto">
-                <code>{tip.codeExample}</code>
-              </pre>
-            )}
+        {showExamples && examplesCount > 0 && <Examples/>}
 
-            <div className="flex gap-2 mt-3">
-              {tip.tags.map(tag => (
-                <span key={tag} className="text-xs bg-gray-200 px-2 py-1 rounded">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </main>
+        <div className={'flex items-center justify-center my-16'}>
+          <button className="btn btn-link no-underline flex flex-col items-center gap-4">
+            <span>Mostrar tips anteriores</span>
+            <IoIosArrowDown />
+          </button>
+        </div>
+      </main>
+    </div>
   );
 }

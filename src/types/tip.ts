@@ -1,8 +1,14 @@
-export interface Tip {
-  id: string;
-  title: string;
-  content: string;
-  category: TipCategory;
+import { Category } from "@/types/category";
+
+export interface Example {
+  explanation: string;
+  details_markdown: string;
 }
 
-export type TipCategory = "git_command" | "terminal" | "editor";
+export interface Tip {
+  title: string;
+  description: string;
+  content_markdown: string;
+  examples: Example[];
+  category: Category;
+}

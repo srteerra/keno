@@ -1,14 +1,17 @@
 import { CATEGORY_RULES } from "@/constants/categories.constant";
 import { BASE_INSTRUCTIONS } from "@/lib/prompts/tips/instructions.prompt";
-import { TipCategory } from "@/types/tip";
+import { Category } from "@/types/category";
 
-const USER_MESSAGES: Record<TipCategory, string> = {
-  git_command: "Give me a Git tip",
-  terminal: "Give me a terminal/shell tip",
-  editor: "Give me a code editor tip",
+const USER_MESSAGES: Record<Category, string> = {
+  [Category.GIT_COMMAND]: "Give me a Git tip",
+  [Category.TERMINAL]: "Give me a terminal/shell tip",
+  [Category.EDITOR]: "Give me a code editor tip",
+  [Category.REACT]: "Give me a React tip",
+  [Category.PYTHON]: "Give me a Python tip",
+  [Category.CSS]: "Give me a CSS tip",
 };
 
-export const buildPrompt = (category: TipCategory): string => {
+export const buildPrompt = (category: Category): string => {
   const categoryRules = CATEGORY_RULES[category];
 
   if (!categoryRules) {
@@ -18,11 +21,18 @@ export const buildPrompt = (category: TipCategory): string => {
   return `${BASE_INSTRUCTIONS}\n\n${categoryRules}`;
 };
 
-export const buildUserMessage = (category: TipCategory): string => {
+export const buildUserMessage = (category: Category): string => {
   return USER_MESSAGES[category];
 };
 
-export const isValidCategory = (category: string): category is TipCategory => {
-  const validCategories: TipCategory[] = ["git_command", "terminal", "editor"];
-  return validCategories.includes(category as TipCategory);
+export const isValidCategory = (category: string): category is Category => {
+  const validCategories: Category[] = [
+    Category.GIT_COMMAND,
+    Category.TERMINAL,
+    Category.EDITOR,
+    Category.REACT,
+    Category.PYTHON,
+    Category.CSS,
+  ];
+  return validCategories.includes(category as Category);
 };

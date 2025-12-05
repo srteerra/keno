@@ -1,10 +1,13 @@
 import { GIT_RULES } from "@/lib/prompts/tips/git.prompt";
 import { TERMINAL_RULES } from "@/lib/prompts/tips/terminal.prompt";
 import { EDITOR_RULES } from "@/lib/prompts/tips/editor.prompt";
-import { TipCategory } from "@/types/tip";
+import { Category } from "@/types/category";
 
-export const CATEGORY_RULES: Record<TipCategory, string> = {
-  git_command: GIT_RULES,
-  terminal: TERMINAL_RULES,
-  editor: EDITOR_RULES,
+export const CATEGORY_RULES: Record<Category, string> = {
+  [Category.GIT_COMMAND]: GIT_RULES,
+  [Category.TERMINAL]: TERMINAL_RULES,
+  [Category.EDITOR]: EDITOR_RULES,
+  [Category.REACT]: EDITOR_RULES,
+  [Category.PYTHON]: EDITOR_RULES,
+  [Category.CSS]: EDITOR_RULES,
 };
