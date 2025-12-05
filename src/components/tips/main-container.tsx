@@ -16,7 +16,7 @@ import { extractBlockHelper } from "@/lib/helpers/extract-block.helper";
 export const Skeleton = ({ className = "" }: { className?: string }) => {
   return (
     <div className={`relative overflow-hidden rounded-[var(--radius-box)] bg-gradient-to-r from-base-300 to-base-200 ${className}`}>
-      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-base-200 to-transparent" />
+      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-base-200 to-transparent"/>
     </div>
   );
 };
@@ -34,13 +34,13 @@ export const MainContainer = () => {
   const examplesCount = tip?.examples?.length ?? 0;
 
   if (!tip) return (
-    <Skeleton className="h-52 w-4/9 mb-3" />
-  )
+    <Skeleton className="h-52 w-4/9 mb-3"/>
+  );
 
   return (
     <div className="bg-base-200 p-6 rounded-3xl min-w-4/9 max-w-4/9">
       <div className={'flex gap-3 items-center mb-1'}>
-        <FaWandMagicSparkles size={20} color={"white"} />
+        <FaWandMagicSparkles size={20} color={"white"}/>
         <h2 className="text-lg font-bold">{tip.title}</h2>
       </div>
 
@@ -60,7 +60,7 @@ export const MainContainer = () => {
               <span className="text-[10px] px-1.5 py-0.5 rounded bg-stone-900/70 text-white">
                 {mainCode.lang ?? "sh"}
               </span>
-              <CopyButton text={mainCode.code} />
+              <CopyButton text={mainCode.code}/>
             </div>
 
             <SyntaxHighlighter
@@ -85,24 +85,25 @@ export const MainContainer = () => {
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
-                pre: PreBlock,
-                code({ inline, className, children, ...props }) {
+                pre: (props: any) => <PreBlock {...props} />,
+                code: (props: any) => {
+                  const { inline, className, children, ...rest } = props;
                   if (inline && tip.category === "editor") {
                     return (
-                      <kbd className="kbd text-white" {...props}>
+                      <kbd className="kbd text-white" {...rest}>
                         {children}
                       </kbd>
                     );
                   }
                   if (inline) {
                     return (
-                      <code className="px-1.5 py-0.5 rounded bg-stone-200 text-stone-800" {...props}>
+                      <code className="px-1.5 py-0.5 rounded bg-stone-200 text-stone-800" {...rest}>
                         {children}
                       </code>
                     );
                   }
-                  return <code className={className} {...props}>{children}</code>;
-                },
+                  return <code className={className} {...rest}>{children}</code>;
+                }
               }}
             >
               {restMarkdown}
@@ -113,7 +114,7 @@ export const MainContainer = () => {
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <CategoryBadge type={tip.category} />
+          <CategoryBadge type={tip.category}/>
 
           {examplesCount > 0 && (
             <button
@@ -123,25 +124,25 @@ export const MainContainer = () => {
               <span className={'text-white'}>
                 {examplesCount} example{examplesCount > 1 ? "s" : ""}
               </span>
-              {showExamples ? <IoIosArrowUp color={'white'} /> : <IoIosArrowDown color={'white'} />}
+              {showExamples ? <IoIosArrowUp color={'white'}/> : <IoIosArrowDown color={'white'}/>}
             </button>
           )}
         </div>
 
         <div className="flex items-center gap-4">
           <button className="btn btn-square rounded-xl btn-ghost" aria-label="Compartir">
-            <LuShare size={20} color={'white'} />
+            <LuShare size={20} color={'white'}/>
           </button>
           <div className="flex items-center gap-2">
             <strong>23</strong>
             <button className="btn btn-square btn-soft rounded-xl btn-success" aria-label="Me gusta">
-              <BiLike size={20} />
+              <BiLike size={20}/>
             </button>
           </div>
           <div className="flex items-center gap-2">
             <strong>23</strong>
             <button className="btn btn-square btn-soft rounded-xl btn-error" aria-label="No me gusta">
-              <BiDislike size={20} />
+              <BiDislike size={20}/>
             </button>
           </div>
         </div>

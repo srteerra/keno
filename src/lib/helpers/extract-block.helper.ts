@@ -13,7 +13,7 @@ export function extractBlockHelper(md: string): ParsedBlocks {
   if (!match) {
     return {
       lead,
-      mainCode: null as null | { lang?: string; code: string },
+      mainCode: undefined,
       restMarkdown: md.replace(lead, "").trim(),
     };
   }

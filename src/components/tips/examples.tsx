@@ -46,23 +46,24 @@ export const Examples = () => {
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={{
-                    pre: PreBlock,
-                    code({ inline, className, children, ...props }) {
+                    pre: (props: any) => <PreBlock {...props} />,
+                    code: (props: any) => {
+                      const { inline, className, children, ...rest } = props;
                       if (inline && tip.category === "editor") {
                         return (
-                          <kbd className="kbd text-white" {...props}>
+                          <kbd className="kbd text-white" {...rest}>
                             {children}
                           </kbd>
                         );
                       }
                       if (inline) {
                         return (
-                          <code className="px-1.5 py-0.5 rounded bg-stone-200 text-stone-800" {...props}>
+                          <code className="px-1.5 py-0.5 rounded bg-stone-200 text-stone-800" {...rest}>
                             {children}
                           </code>
                         );
                       }
-                      return <code className={className} {...props}>{children}</code>;
+                      return <code className={className} {...rest}>{children}</code>;
                     }
                   }}
                 >
