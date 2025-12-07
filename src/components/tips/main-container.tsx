@@ -4,8 +4,6 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { CategoryBadge } from "@/components/tips/category-badge";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { LuShare } from "react-icons/lu";
-import { BiDislike, BiLike } from "react-icons/bi";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { CopyButton } from "@/components/ui/CopyButton";
@@ -36,6 +34,8 @@ export const MainContainer = () => {
   if (!tip) return (
     <Skeleton className="h-52 w-4/9 mb-3"/>
   );
+
+  console.log(tip);
 
   return (
     <div className="bg-base-200 p-6 rounded-3xl min-w-4/9 max-w-4/9">
@@ -127,24 +127,6 @@ export const MainContainer = () => {
               {showExamples ? <IoIosArrowUp color={'white'}/> : <IoIosArrowDown color={'white'}/>}
             </button>
           )}
-        </div>
-
-        <div className="flex items-center gap-4">
-          <button className="btn btn-square rounded-xl btn-ghost" aria-label="Compartir">
-            <LuShare size={20} color={'white'}/>
-          </button>
-          <div className="flex items-center gap-2">
-            <strong>23</strong>
-            <button className="btn btn-square btn-soft rounded-xl btn-success" aria-label="Me gusta">
-              <BiLike size={20}/>
-            </button>
-          </div>
-          <div className="flex items-center gap-2">
-            <strong>23</strong>
-            <button className="btn btn-square btn-soft rounded-xl btn-error" aria-label="No me gusta">
-              <BiDislike size={20}/>
-            </button>
-          </div>
         </div>
       </div>
     </div>

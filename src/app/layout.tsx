@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from 'next/font/google';
+import { Header } from "@/components/layout/header";
+import React from "react";
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -20,7 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={poppins.className}>
-    <body className={'bg-base-100'}>
+    <body className={'h-full'}>
+    <Header/>
     {children}
     </body>
     </html>

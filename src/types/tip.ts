@@ -1,14 +1,4 @@
-import { Category } from "@/types/category";
+import { TipSchema } from "@/lib/schemas/tip.schema";
+import { z } from "zod";
 
-export interface Example {
-  explanation: string;
-  details_markdown: string;
-}
-
-export interface Tip {
-  title: string;
-  description: string;
-  content_markdown: string;
-  examples: Example[];
-  category: Category;
-}
+export type Tip = z.infer<typeof TipSchema>;

@@ -1,11 +1,9 @@
 "use client"
 import Image from "next/image";
 import ItsFine from "../assets/images/fine.png";
-import { IoIosArrowDown } from "react-icons/io";
 import { useTips } from "@/hooks/useTips";
 import React, { useEffect } from "react";
 import { useTipStore } from "@/stores/Tip.store";
-import { Header } from "@/components/layout/header";
 import { CategoryBadge } from "@/components/tips/category-badge";
 import { MainContainer } from "@/components/tips/main-container";
 import { Category } from "@/types/category";
@@ -27,29 +25,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={"h-full"}>
-      <Header />
+    <main className="flex justify-center flex-col items-center mt-18">
+      <Image src={ItsFine} alt={"It is fine"} width={200} />
 
-      <main className="flex justify-center flex-col items-center mt-18">
-        <Image src={ItsFine} alt={"It is fine"} width={200} />
+      <div className={'flex gap-2 my-6'}>
+        {Object.values(Category).map((category: Category) =>
+          <CategoryBadge onClick={() => handleNewTip(category)} key={category} type={category} />
+        )}
+      </div>
 
-        <div className={'flex gap-2 my-6'}>
-          {Object.values(Category).map((category: Category) =>
-            <CategoryBadge onClick={() => handleNewTip(category)} key={category} type={category} />
-          )}
-        </div>
+      <MainContainer />
 
-        <MainContainer />
-
-        {showExamples && examplesCount > 0 && <Examples/>}
-
-        <div className={'flex items-center justify-center my-16'}>
-          <button className="btn btn-link no-underline flex flex-col items-center gap-4">
-            <span>Mostrar tips anteriores</span>
-            <IoIosArrowDown />
-          </button>
-        </div>
-      </main>
-    </div>
+      {showExamples && examplesCount > 0 && <Examples/>}
+    </main>
   );
 }
