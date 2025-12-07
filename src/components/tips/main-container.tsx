@@ -10,6 +10,7 @@ import { CopyButton } from "@/components/ui/CopyButton";
 import { PreBlock } from "@/components/ui/PreBlock";
 import { useTipStore } from "@/stores/Tip.store";
 import { extractBlockHelper } from "@/lib/helpers/extract-block.helper";
+import { Category } from "@/types/category";
 
 export const Skeleton = ({ className = "" }: { className?: string }) => {
   return (
@@ -114,7 +115,7 @@ export const MainContainer = () => {
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <CategoryBadge type={tip.category}/>
+          <CategoryBadge type={tip.category as Category}/>
 
           {examplesCount > 0 && (
             <button

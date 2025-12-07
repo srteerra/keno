@@ -1,6 +1,13 @@
 import { z } from "zod";
 
-export const CategorySchema = z.enum(["git_command", "editor", "terminal"]);
+export const CategorySchema = z.enum([
+  "git_command",
+  "editor",
+  "terminal",
+  "react",
+  "css",
+  "python",
+]);
 
 export const ExampleSchema = z.object({
   explanation: z.string(),
