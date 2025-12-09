@@ -7,6 +7,8 @@ export const useTips = () => {
 
   const getTip = async (category?: Category) => {
     try {
+      clearTip();
+
       const res = await fetch(`/api/tips`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
