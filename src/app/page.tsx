@@ -28,8 +28,6 @@ export default function Home() {
     <main className="flex justify-center flex-col items-center mt-18">
       <Image src={ItsFine} alt={"It is fine"} width={200}/>
 
-      <span className="skeleton skeleton-text">Whats your next hack...</span>
-
       <div className={'flex gap-2 my-6'}>
         {Object.values(Category).map((category: Category) =>
           <CategoryBadge onClick={() => handleNewTip(category)} key={category} type={category}/>
