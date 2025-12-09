@@ -11,6 +11,8 @@ import { PreBlock } from "@/components/ui/PreBlock";
 import { useTipStore } from "@/stores/Tip.store";
 import { extractBlockHelper } from "@/lib/helpers/extract-block.helper";
 import { Category } from "@/types/category";
+import StartAI from '@/assets/svg/star-ai.svg';
+import Image from 'next/image';
 
 export const Skeleton = ({ className = "" }: { className?: string }) => {
   return (
@@ -37,7 +39,7 @@ export const MainContainer = () => {
   return (
     <div className="bg-base-200 p-6 rounded-3xl min-w-4/9 max-w-4/9">
       <div className={'flex gap-3 items-center mb-1'}>
-        <FaWandMagicSparkles size={20} color={"white"}/>
+        <Image src={StartAI} alt="Logo" width={24} height={24} />
         <h2 className="text-lg font-bold">{tip.title}</h2>
       </div>
 
