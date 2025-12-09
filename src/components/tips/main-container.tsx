@@ -114,19 +114,19 @@ export const MainContainer = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <CategoryBadge type={tip.category as Category}/>
+        </div>
 
-          {examplesCount > 0 && (
-            <button
-              className="btn btn-link no-underline flex items-center gap-2"
-              onClick={showExamplesToggle}
-            >
+        {examplesCount > 0 && (
+          <button
+            className="btn btn-link no-underline flex items-center gap-2"
+            onClick={showExamplesToggle}
+          >
               <span className={'text-white'}>
                 {examplesCount} example{examplesCount > 1 ? "s" : ""}
               </span>
-              {showExamples ? <IoIosArrowUp color={'white'}/> : <IoIosArrowDown color={'white'}/>}
-            </button>
-          )}
-        </div>
+            {showExamples ? <IoIosArrowUp color={'white'}/> : <IoIosArrowDown color={'white'}/>}
+          </button>
+        )}
       </div>
     </div>
   );
