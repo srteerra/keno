@@ -3,31 +3,31 @@
 @plugin "daisyui";
 
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
-    --skeleton-color: 255 255 255;
+  --background: #ffffff;
+  --foreground: #171717;
+  --skeleton-color: 255 255 255;
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-        --skeleton-color: 200 200 200;
-    }
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --skeleton-color: 200 200 200;
+  }
 }
 
 body {
-    height: 100%;
-    width: 100%;
-    min-height: 100svh;
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  width: 100%;
+  min-height: 100svh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }

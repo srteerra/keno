@@ -17,7 +17,9 @@ export const PreBlock = ({ children }: Props) => {
       language={lang}
       style={oneDark}
       customStyle={{
-        borderRadius: "12px", border: "1px solid #d6d3d1", margin: 0
+        borderRadius: "12px",
+        border: "1px solid #d6d3d1",
+        margin: "15px 0",
       }}
       wrapLines
     >

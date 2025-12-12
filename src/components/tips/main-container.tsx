@@ -10,19 +10,21 @@ import { PreBlock } from "@/components/ui/PreBlock";
 import { useTipStore } from "@/stores/Tip.store";
 import { extractBlockHelper } from "@/lib/helpers/extract-block.helper";
 import { Category } from "@/types/category";
-import StartAI from '@/assets/svg/star-ai.svg';
-import Image from 'next/image';
+import StartAI from "@/assets/svg/star-ai.svg";
+import Image from "next/image";
 
 export const Skeleton = ({ className = "" }: { className?: string }) => {
   return (
-    <div className={`skeleton relative overflow-hidden flex h-32 ${className}`}></div>
+    <div
+      className={`skeleton relative flex h-32 overflow-hidden ${className}`}
+    ></div>
   );
 };
 
 export const MainContainer = () => {
-  const tip = useTipStore(state => state.tip);
-  const showExamples = useTipStore(state => state.showExamples);
-  const showExamplesToggle = useTipStore(state => state.showExamplesToggle);
+  const tip = useTipStore((state) => state.tip);
+  const showExamples = useTipStore((state) => state.showExamples);
+  const showExamplesToggle = useTipStore((state) => state.showExamplesToggle);
 
   const { lead, mainCode, restMarkdown } = useMemo(() => {
     const raw = tip?.content_markdown ?? "";
@@ -31,34 +33,34 @@ export const MainContainer = () => {
 
   const examplesCount = tip?.examples?.length ?? 0;
 
-  if (!tip) return (
-    <Skeleton className="h-52 w-4/9 mb-3"/>
-  );
+  if (!tip) return <Skeleton className="mb-3 h-52 w-4/9" />;
 
   return (
-    <div className="bg-base-200 p-6 rounded-3xl min-w-4/9 max-w-4/9">
-      <div className={'flex gap-3 items-center mb-1'}>
+    <div className="bg-base-200 max-w-4/9 min-w-4/9 rounded-3xl p-6">
+      <div className={"mb-1 flex items-center gap-3"}>
         <Image src={StartAI} alt="Logo" width={24} height={24} />
         <h2 className="text-lg font-bold">{tip.title}</h2>
       </div>
 
-      <p className="text-white font-light">{tip.description}</p>
+      <p className="font-light text-white">{tip.description}</p>
 
-      <div className="py-3 px-5 bg-amber-50 rounded-2xl my-6 space-y-3">
+      <div className="my-6 space-y-3 rounded-2xl bg-amber-50 px-5 py-3">
         {lead && (
           <p
-            className="text-sm text-stone-800 font-bold"
-            dangerouslySetInnerHTML={{ __html: lead.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") }}
+            className="text-sm font-bold text-stone-800"
+            dangerouslySetInnerHTML={{
+              __html: lead.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
+            }}
           />
         )}
 
         {mainCode && (
           <div className="group relative">
-            <div className="absolute right-2 top-2 flex items-center gap-2 z-10">
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-stone-900/70 text-white">
+            <div className="absolute top-2 right-2 z-10 flex items-center gap-2">
+              <span className="rounded bg-stone-900/70 px-1.5 py-0.5 text-[10px] text-white">
                 {mainCode.lang ?? "sh"}
               </span>
-              <CopyButton text={mainCode.code}/>
+              <CopyButton text={mainCode.code} />
             </div>
 
             <SyntaxHighlighter
@@ -68,7 +70,7 @@ export const MainContainer = () => {
                 borderRadius: "12px",
                 border: "1px solid #d6d3d1",
                 margin: 0,
-                backgroundColor: "#282c34"
+                backgroundColor: "#282c34",
               }}
               wrapLines
               showLineNumbers={false}
@@ -79,7 +81,7 @@ export const MainContainer = () => {
         )}
 
         {restMarkdown && (
-          <div className="prose prose-stone max-w-none text-sm [&>*]:text-stone-800 [&_p]:text-stone-800 [&_li]:text-stone-800 [&_strong]:text-stone-900">
+          <div className="prose prose-stone max-w-none text-sm [&_li]:text-stone-800 [&_p]:text-stone-800 [&_strong]:text-stone-900 [&>*]:text-stone-800">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
@@ -95,13 +97,23 @@ export const MainContainer = () => {
                   }
                   if (inline) {
                     return (
-                      <code className="px-1.5 py-0.5 rounded bg-stone-200 text-stone-800" {...rest}>
+                      <code
+                        className="rounded bg-stone-200 px-1.5 py-0.5 text-stone-800"
+                        {...rest}
+                      >
                         {children}
                       </code>
                     );
                   }
-                  return <code className={className} {...rest}>{children}</code>;
-                }
+                  return (
+                    <code
+                      className={`${className} bg-stone-800 text-white`}
+                      {...rest}
+                    >
+                      {children}
+                    </code>
+                  );
+                },
               }}
             >
               {restMarkdown}
@@ -112,18 +124,22 @@ export const MainContainer = () => {
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <CategoryBadge type={tip.category as Category}/>
+          <CategoryBadge type={tip.category as Category} />
         </div>
 
         {examplesCount > 0 && (
           <button
-            className="btn btn-link no-underline flex items-center gap-2"
+            className="btn btn-link flex items-center gap-2 no-underline"
             onClick={showExamplesToggle}
           >
-              <span className={'text-white'}>
-                {examplesCount} example{examplesCount > 1 ? "s" : ""}
-              </span>
-            {showExamples ? <IoIosArrowUp color={'white'}/> : <IoIosArrowDown color={'white'}/>}
+            <span className={"text-white"}>
+              {examplesCount} example{examplesCount > 1 ? "s" : ""}
+            </span>
+            {showExamples ? (
+              <IoIosArrowUp color={"white"} />
+            ) : (
+              <IoIosArrowDown color={"white"} />
+            )}
           </button>
         )}
       </div>
