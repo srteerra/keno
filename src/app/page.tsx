@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import ItsFine from "../assets/images/fine.png";
 import { useTips } from "@/hooks/useTips";
@@ -18,7 +18,7 @@ export default function Home() {
 
   const handleNewTip = async (type: Category) => {
     await getTip(type);
-  }
+  };
 
   useEffect(() => {
     getTip();

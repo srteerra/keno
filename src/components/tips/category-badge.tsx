@@ -11,21 +11,21 @@ interface Props {
 const IconCategory = ({ type }: Props) => {
   switch (type) {
     case Category.GIT_COMMAND:
-      return <FaGitAlt />
+      return <FaGitAlt/>;
     case Category.EDITOR:
-      return <FaCode />
+      return <FaCode/>;
     case Category.TERMINAL:
-      return <SiGnubash />
+      return <SiGnubash/>;
     case Category.REACT:
-      return <FaReact />
+      return <FaReact/>;
     case Category.PYTHON:
-      return <FaAdn />
+      return <FaAdn/>;
     case Category.CSS:
-      return <FaCss3Alt />
+      return <FaCss3Alt/>;
     default:
-      return <FaCode />
+      return <FaCode/>;
   }
-}
+};
 
 export const CategoryBadge = ({ type, onClick }: Props) => {
   const bg = MapCategory.bgColor(type);
@@ -37,8 +37,8 @@ export const CategoryBadge = ({ type, onClick }: Props) => {
       className="badge font-bold px-6 py-4 border-0 cursor-pointer hover:brightness-150 transition-all ease-out"
       style={{ backgroundColor: bg, color }}
     >
-      <IconCategory type={type} />
+      <IconCategory type={type}/>
       {MapCategory.labels(type)}
     </div>
   );
-}
+};

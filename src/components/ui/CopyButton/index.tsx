@@ -14,12 +14,12 @@ export const CopyButton = ({ text }: Props) => {
     await navigator.clipboard.writeText(text);
 
     toast.success('Copied!', {
-      position: 'bottom-center',
+      position: 'bottom-center'
     });
 
     setCopied(true);
     setTimeout(() => setCopied(false), 1200);
-  }
+  };
 
   if (copied) {
     return (

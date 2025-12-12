@@ -8,8 +8,14 @@ export const Header = () => {
 
       <div className={'flex items-center justify-end gap-6'}>
         <Link className={'text-md'} href={"/widgets"}>Widgets</Link>
-        <button className={'btn btn-dark rounded-full px-6 py-4'} onClick={() => {}}>API Reference</button>
+
+        <button
+          className={'btn btn-dark rounded-full px-6 py-4'} onClick={() => {
+        }}
+        >
+          API Reference
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
