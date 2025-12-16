@@ -74,9 +74,23 @@ export const Examples = () => {
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      pre: (props: any) => <PreBlock {...props} />,
-                      code: (props: any) => {
-                        const { inline, className, children, ...rest } = props;
+                      pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
+                        <PreBlock {...props} />
+                      ),
+                      code: (
+                        props: {
+                          inline?: boolean;
+                          className?: string;
+                          children?: React.ReactNode;
+                        } & React.HTMLAttributes<HTMLElement>
+                      ) => {
+                        const { inline, className, children, ...rest } =
+                          props as {
+                            inline?: boolean;
+                            className?: string;
+                            children?: React.ReactNode;
+                          } & React.HTMLAttributes<HTMLElement>;
+
                         if (inline && tip.category === "editor") {
                           return (
                             <kbd className="kbd text-white" {...rest}>

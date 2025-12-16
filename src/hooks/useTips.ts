@@ -1,5 +1,6 @@
 import { useTipStore } from "@/stores/Tip.store";
 import { Category } from "@/types/category";
+import { Tip } from "@/types/tip";
 
 export const useTips = () => {
   const setTip = useTipStore((state) => state.setTip);
@@ -16,14 +17,14 @@ export const useTips = () => {
       });
 
       if (!res.ok) {
-        const error = await res.json();
+        const error = (await res.json()) as { message?: string };
         throw new Error(error.message || "Failed to get tips");
       }
 
-      const data = await res.json();
+      const data = (await res.json()) as Tip;
       setTip(data);
 
-      return data.tips;
+      return data;
     } catch (error) {
       throw error;
     } finally {

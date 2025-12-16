@@ -3,15 +3,29 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+}
+
+interface ChildProps {
+  className?: string;
+  children?: React.ReactNode;
 }
 
 export const PreBlock = ({ children }: Props) => {
+  if (!children) return null;
+
   const child = Array.isArray(children) ? children[0] : children;
-  const className = child?.props?.className || "";
+
+  if (!React.isValidElement(child)) return null;
+
+  const childProps = child.props as ChildProps;
+  const className = childProps.className ?? "";
+  const childrenString =
+    typeof childProps.children === "string" ? childProps.children : "";
   const match = /language-(\w+)/.exec(className);
-  const lang = match?.[1] || "bash";
-  const code = String(child?.props?.children || "").replace(/\n$/, "");
+  const lang = match?.[1] ?? "bash";
+  const code = childrenString.replace(/\n$/, "");
+
   return (
     <SyntaxHighlighter
       language={lang}

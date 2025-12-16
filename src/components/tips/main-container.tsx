@@ -9,7 +9,7 @@ import { CopyButton } from "@/components/ui/CopyButton";
 import { PreBlock } from "@/components/ui/PreBlock";
 import { useTipStore } from "@/stores/Tip.store";
 import { extractBlockHelper } from "@/lib/helpers/extract-block.helper";
-import { Category } from "@/types/category";
+import type { Category } from "@/types/category";
 import StartAI from "@/assets/svg/star-ai.svg";
 import Image from "next/image";
 
@@ -90,9 +90,22 @@ export const MainContainer = () => {
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
-                pre: (props: any) => <PreBlock {...props} />,
-                code: (props: any) => {
-                  const { inline, className, children, ...rest } = props;
+                pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
+                  <PreBlock {...props} />
+                ),
+                code: (
+                  props: {
+                    inline?: boolean;
+                    className?: string;
+                    children?: React.ReactNode;
+                  } & React.HTMLAttributes<HTMLElement>
+                ) => {
+                  const { inline, className, children, ...rest } = props as {
+                    inline?: boolean;
+                    className?: string;
+                    children?: React.ReactNode;
+                  } & React.HTMLAttributes<HTMLElement>;
+
                   if (inline && tip.category === "editor") {
                     return (
                       <kbd className="kbd text-white" {...rest}>

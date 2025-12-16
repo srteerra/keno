@@ -3,10 +3,11 @@ import { openai } from "@/lib/api/openai";
 import { TipSchema } from "@/lib/schemas/tip.schema";
 import { zodTextFormat } from "openai/helpers/zod";
 import { buildPrompt, buildUserMessage } from "@/lib/helpers/prompt.helper";
+import type { Category } from "@/types/category";
 
 export async function POST(request: NextRequest) {
   try {
-    const { category } = await request.json();
+    const { category } = (await request.json()) as { category: Category };
 
     const userMsg = buildUserMessage(category);
     const instructions = buildPrompt(category);
@@ -37,7 +38,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (safe.data.category !== category) {
+    if ((safe.data.category as Category) !== category) {
       return NextResponse.json(
         { error: "No se pudo parsear la respuesta" },
         { status: 500 }

@@ -19,7 +19,7 @@ export function extractBlockHelper(md: string): ParsedBlocks {
   }
   const lang = match[1];
   const code = match[2]?.trimEnd() ?? "";
-  const before = md.slice(0, match.index!).replace(lead, "").trim();
+  const before = md.slice(0, match.index).replace(lead, "").trim();
   const after = md.slice(match.index! + match[0].length).trim();
   const restMarkdown = [before, after].filter(Boolean).join("\n\n").trim();
   return { lead, mainCode: { lang, code }, restMarkdown };

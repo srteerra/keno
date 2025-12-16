@@ -3,7 +3,7 @@ import { createHighlighter, Highlighter } from "shiki";
 let highlighterPromise: Promise<Highlighter>;
 
 export async function highlight(code: string, lang?: string) {
-  if (!highlighterPromise) {
+  if (highlighterPromise === undefined) {
     highlighterPromise = createHighlighter({
       themes: ["github-dark"],
       langs: [
@@ -22,9 +22,7 @@ export async function highlight(code: string, lang?: string) {
 
   const highlighter = await highlighterPromise;
   const safeLang =
-    lang && highlighter.getLoadedLanguages().includes(lang as any)
-      ? lang
-      : "bash";
+    lang && highlighter.getLoadedLanguages().includes(lang) ? lang : "bash";
 
   return highlighter.codeToHtml(code, {
     lang: safeLang,
