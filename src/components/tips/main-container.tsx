@@ -51,7 +51,10 @@ export const MainContainer = () => {
             dangerouslySetInnerHTML={{
               __html: lead
                 .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-                .replace(/`([^`]+)`/g, '<kbd class="kbd kbd-sm text-white">$1</kbd>'),
+                .replace(
+                  /`([^`]+)`/g,
+                  '<kbd class="kbd kbd-sm text-white">$1</kbd>'
+                ),
             }}
           />
         )}

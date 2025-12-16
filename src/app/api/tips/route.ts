@@ -6,7 +6,7 @@ import { buildPrompt, buildUserMessage } from "@/lib/helpers/prompt.helper";
 
 export async function POST(request: NextRequest) {
   try {
-    const { category, count = 3 } = await request.json();
+    const { category } = await request.json();
 
     const userMsg = buildUserMessage(category);
     const instructions = buildPrompt(category);
@@ -21,7 +21,6 @@ export async function POST(request: NextRequest) {
     });
 
     const parsed = response.output_parsed;
-    console.log("Parsed response:", parsed);
 
     if (!parsed) {
       return NextResponse.json(

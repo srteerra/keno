@@ -21,12 +21,10 @@ export const useTips = () => {
       }
 
       const data = await res.json();
-      console.log(res);
       setTip(data);
 
       return data.tips;
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Unknown error";
       throw error;
     } finally {
     }
