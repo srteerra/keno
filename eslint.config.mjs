@@ -15,16 +15,18 @@ const eslintConfig = defineConfig([
   {
     rules: {
       "react-hooks/exhaustive-deps": "off",
+      "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
-        "warn",
+        "error",
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
           caughtErrorsIgnorePattern: "^_",
           destructuredArrayIgnorePattern: "^_",
+          ignoreRestSiblings: true,
         },
       ],
-      "no-unused-vars": "off",
+
       "no-unused-private-class-members": "warn",
       "no-unreachable": "warn",
       "no-unused-expressions": "warn",
