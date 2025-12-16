@@ -49,7 +49,9 @@ export const MainContainer = () => {
           <p
             className="text-sm font-bold text-stone-800"
             dangerouslySetInnerHTML={{
-              __html: lead.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
+              __html: lead
+                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                .replace(/`([^`]+)`/g, '<kbd class="kbd kbd-sm text-white">$1</kbd>'),
             }}
           />
         )}
@@ -81,7 +83,7 @@ export const MainContainer = () => {
         )}
 
         {restMarkdown && (
-          <div className="prose prose-stone max-w-none text-sm [&_li]:text-stone-800 [&_p]:text-stone-800 [&_strong]:text-stone-900 [&>*]:text-stone-800">
+          <div className="prose prose-stone max-w-none text-sm leading-6 [&_li]:text-stone-800 [&_p]:text-stone-800 [&_strong]:text-stone-900 [&>*]:text-stone-800">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{

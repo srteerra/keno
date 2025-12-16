@@ -19,5 +19,5 @@ export const TipSchema = z.object({
   description: z.string(),
   content_markdown: z.string(),
   category: CategorySchema,
-  examples: z.array(ExampleSchema).min(1),
+  examples: z.array(ExampleSchema).min(2),
 });
