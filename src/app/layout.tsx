@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import React from "react";
 import { Toaster } from "react-hot-toast";
+import { Footer } from "@/components/layout/footer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -23,10 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={poppins.className}>
-      <body className={"h-full"}>
+      <body className="flex min-h-screen flex-col">
         <Header />
-        {children}
+        <main className="flex-1">{children}</main>
         <Toaster />
+        <Footer />
       </body>
     </html>
   );

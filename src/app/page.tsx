@@ -26,7 +26,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="mt-18 flex flex-col items-center justify-center">
+    <main className="mt-18 mb-32 flex flex-col items-center justify-center">
       <Image src={ItsFine} alt={"It is fine"} width={200} />
 
       <div className={"my-6 flex gap-2"}>
