@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import ItsFine from "../assets/images/fine.png";
 import { useTips } from "@/hooks/useTips";
 import React, { useEffect } from "react";
 import { useTipStore } from "@/stores/Tip.store";
@@ -8,6 +6,7 @@ import { CategoryBadge } from "@/components/tips/category-badge";
 import { MainContainer } from "@/components/tips/main-container";
 import { Category } from "@/types/category";
 import { Examples } from "@/components/tips/examples";
+import Keno from "@/components/ui/Keno";
 import Link from "next/link";
 
 export default function Home() {
@@ -27,7 +26,7 @@ export default function Home() {
 
   return (
     <main className="mt-18 mb-32 flex flex-col items-center justify-center">
-      <Image src={ItsFine} alt={"It is fine"} width={200} />
+      <Keno />
 
       <div className={"my-6 flex gap-2"}>
         {[Category.GIT_COMMAND, Category.TERMINAL, Category.EDITOR].map(
