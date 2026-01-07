@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getTip();
+    getTip(Category.GIT_COMMAND);
   }, []);
 
   return (

@@ -16,7 +16,7 @@ import Image from "next/image";
 export const Skeleton = ({ className = "" }: { className?: string }) => {
   return (
     <div
-      className={`skeleton relative flex h-32 overflow-hidden ${className}`}
+      className={`skeleton-pulse relative flex h-32 overflow-hidden rounded-3xl bg-[#151515] ${className}`}
     ></div>
   );
 };
@@ -36,7 +36,7 @@ export const MainContainer = () => {
   if (!tip) return <Skeleton className="mb-3 h-52 w-4/9" />;
 
   return (
-    <div className="bg-base-200 max-w-4/9 min-w-4/9 rounded-3xl p-6">
+    <div className="max-w-4/9 min-w-4/9 rounded-3xl bg-[#171717] p-6">
       <div className={"mb-1 flex items-center gap-3"}>
         <Image src={StartAI} alt="Logo" width={24} height={24} />
         <h2 className="text-lg font-bold">{tip.title}</h2>

@@ -16,7 +16,7 @@ export const Examples = () => {
   }
 
   return (
-    <div className="bg-base-200 mt-4 max-w-4/9 min-w-4/9 space-y-3 rounded-3xl p-6">
+    <div className="mt-4 max-w-4/9 min-w-4/9 space-y-3 rounded-3xl bg-[#171717] p-6">
       {tip.examples.map((ex, i) => {
         const { lead, mainCode, restMarkdown } = extractBlockHelper(
           ex?.details_markdown
@@ -25,7 +25,7 @@ export const Examples = () => {
         return (
           <div key={i} className="p-2">
             <h3 className="text-md mb-2">
-              {i + 1}. {ex.explanation}
+              <strong>{i + 1}</strong>. {ex.explanation}
             </h3>
 
             <div className="my-6 space-y-3 rounded-2xl bg-amber-50 px-5 py-3">

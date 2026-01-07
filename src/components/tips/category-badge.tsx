@@ -34,7 +34,7 @@ export const CategoryBadge = ({ type, onClick }: Props) => {
   return (
     <div
       onClick={onClick}
-      className="badge cursor-pointer border-0 px-6 py-4 font-bold transition-all ease-out hover:brightness-150"
+      className={`badge ${onClick && "cursor-pointer transition-all ease-out hover:brightness-150"} border-0 px-6 py-4 font-bold`}
       style={{ backgroundColor: bg, color }}
     >
       <IconCategory type={type} />
