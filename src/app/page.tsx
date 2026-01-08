@@ -29,15 +29,13 @@ export default function Home() {
       <Keno />
 
       <div className={"my-6 flex gap-2"}>
-        {[Category.GIT_COMMAND, Category.TERMINAL, Category.EDITOR].map(
-          (category: Category) => (
-            <CategoryBadge
-              onClick={() => handleNewTip(category)}
-              key={category}
-              type={category}
-            />
-          )
-        )}
+        {Object.values(Category).map((category: Category) => (
+          <CategoryBadge
+            onClick={() => handleNewTip(category)}
+            key={category}
+            type={category}
+          />
+        ))}
       </div>
 
       <MainContainer />

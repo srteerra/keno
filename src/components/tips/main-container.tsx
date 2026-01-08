@@ -9,7 +9,7 @@ import { CopyButton } from "@/components/ui/CopyButton";
 import { PreBlock } from "@/components/ui/PreBlock";
 import { useTipStore } from "@/stores/Tip.store";
 import { extractBlockHelper } from "@/lib/helpers/extract-block.helper";
-import type { Category } from "@/types/category";
+import { Category } from "@/types/category";
 import StartAI from "@/assets/svg/star-ai.svg";
 import Image from "next/image";
 
@@ -106,7 +106,7 @@ export const MainContainer = () => {
                     children?: React.ReactNode;
                   } & React.HTMLAttributes<HTMLElement>;
 
-                  if (inline && tip.category === "editor") {
+                  if (inline && tip.category === Category.EDITOR) {
                     return (
                       <kbd className="kbd text-white" {...rest}>
                         {children}

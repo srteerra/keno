@@ -3,6 +3,5 @@ export enum Category {
   TERMINAL = "terminal",
   EDITOR = "editor",
   REACT = "react",
-  PYTHON = "python",
   CSS = "css",
 }

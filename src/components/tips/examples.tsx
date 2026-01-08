@@ -7,6 +7,7 @@ import { CopyButton } from "@/components/ui/CopyButton";
 import { PreBlock } from "@/components/ui/PreBlock";
 import { useTipStore } from "@/stores/Tip.store";
 import { extractBlockHelper } from "@/lib/helpers/extract-block.helper";
+import { Category } from "@/types/category";
 
 export const Examples = () => {
   const tip = useTipStore((state) => state.tip);
@@ -91,7 +92,7 @@ export const Examples = () => {
                             children?: React.ReactNode;
                           } & React.HTMLAttributes<HTMLElement>;
 
-                        if (inline && tip.category === "editor") {
+                        if (inline && tip.category === Category.EDITOR) {
                           return (
                             <kbd className="kbd text-white" {...rest}>
                               {children}

@@ -7,7 +7,6 @@ const USER_MESSAGES: Record<Category, string> = {
   [Category.TERMINAL]: "Give me a terminal/shell tip",
   [Category.EDITOR]: "Give me a code editor tip",
   [Category.REACT]: "Give me a React tip",
-  [Category.PYTHON]: "Give me a Python tip",
   [Category.CSS]: "Give me a CSS tip",
 };
 
@@ -31,8 +30,8 @@ export const isValidCategory = (category: string): category is Category => {
     Category.TERMINAL,
     Category.EDITOR,
     Category.REACT,
-    Category.PYTHON,
     Category.CSS,
   ];
+
   return validCategories.includes(category as Category);
 };

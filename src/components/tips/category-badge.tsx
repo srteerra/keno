@@ -1,4 +1,4 @@
-import { FaCode, FaGitAlt, FaCss3Alt, FaReact, FaAdn } from "react-icons/fa";
+import { FaCode, FaGitAlt, FaCss3Alt, FaReact } from "react-icons/fa";
 import { SiGnubash } from "react-icons/si";
 import { Category } from "@/types/category";
 import { MapCategory } from "@/lib/mappers/categories.mapper";
@@ -18,8 +18,6 @@ const IconCategory = ({ type }: Props) => {
       return <SiGnubash />;
     case Category.REACT:
       return <FaReact />;
-    case Category.PYTHON:
-      return <FaAdn />;
     case Category.CSS:
       return <FaCss3Alt />;
     default:

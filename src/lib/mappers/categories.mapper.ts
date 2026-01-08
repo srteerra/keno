@@ -9,7 +9,6 @@ const bgColor = (category: Category): string => {
     [Category.EDITOR]: "rgba(44,91,107,0.36)",
     [Category.GIT_COMMAND]: baseBgColor,
     [Category.REACT]: "rgba(97,218,251,0.22)",
-    [Category.PYTHON]: "rgba(53,114,165,0.22)",
     [Category.CSS]: "rgba(38,77,228,0.22)",
   };
 
@@ -22,7 +21,6 @@ const color = (category: Category): string => {
     [Category.EDITOR]: "#9cdcff",
     [Category.GIT_COMMAND]: baseColor,
     [Category.REACT]: "#61dafb",
-    [Category.PYTHON]: "#3776ab",
     [Category.CSS]: "#264de4",
   };
 
@@ -35,7 +33,6 @@ const labels = (category: Category): string => {
     [Category.EDITOR]: "Editor",
     [Category.GIT_COMMAND]: "Git Command",
     [Category.REACT]: "React",
-    [Category.PYTHON]: "Python",
     [Category.CSS]: "CSS",
   };
 
