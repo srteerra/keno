@@ -27,9 +27,8 @@ export async function POST(request: NextRequest) {
     const instructions = buildPrompt(category);
 
     const response = await openai.responses.parse({
-      model: process.env.OPENAI_MODEL || "gpt-5-nano",
+      model: process.env.OPENAI_MODEL || "gpt-5.4-nano",
       instructions,
-      max_tokens: Number(process.env.OPENAI_MAX_TOKENS) || 1000,
       input: [{ role: "user", content: userMsg }],
       text: {
         format: zodTextFormat(TipSchema, "zod_schema"),
