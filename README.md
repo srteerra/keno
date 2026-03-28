@@ -4,7 +4,7 @@
 
 **Daily productivity tips for developers, powered by AI**
 
-*Work smarter. Ship faster. Learn every day.*
+_Work smarter. Ship faster. Learn every day._
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -27,14 +27,14 @@ Keno is a web app that delivers **fresh, AI-generated productivity tips** every 
 
 ## ✨ Features at a Glance
 
-| Feature | Description |
-|---|---|
-| 🤖 **AI-Powered Tips** | Fresh insights generated daily via OpenAI |
-| 🗂️ **6 Categories** | Git · Terminal · Editor · React · CSS · TypeScript |
-| 🌙 **Dark Mode** | Easy on the eyes, day or night |
-| 📱 **Responsive** | Works on desktop, tablet, and mobile |
-| 🖍️ **Syntax Highlighting** | Code snippets rendered with Prism.js |
-| 🔄 **Daily Refresh** | New content every day to keep learning |
+| Feature                    | Description                                        |
+| -------------------------- | -------------------------------------------------- |
+| 🤖 **AI-Powered Tips**     | Fresh insights generated daily via OpenAI          |
+| 🗂️ **6 Categories**        | Git · Terminal · Editor · React · CSS · TypeScript |
+| 🌙 **Dark Mode**           | Easy on the eyes, day or night                     |
+| 📱 **Responsive**          | Works on desktop, tablet, and mobile               |
+| 🖍️ **Syntax Highlighting** | Code snippets rendered with Prism.js               |
+| 🔄 **Daily Refresh**       | New content every day to keep learning             |
 
 ---
 
@@ -142,6 +142,6 @@ Contributions, issues, and feature requests are welcome!
 
 ⭐ **Found this useful? Give it a star!** ⭐
 
-*Made with ❤️ by developers, for developers*
+_Made with ❤️ by developers, for developers_
 
 </div>
