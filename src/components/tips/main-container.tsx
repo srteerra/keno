@@ -10,6 +10,7 @@ import { PreBlock } from "@/components/ui/PreBlock";
 import { useTipStore } from "@/stores/Tip.store";
 import { extractBlockHelper } from "@/lib/helpers/extract-block.helper";
 import { Category } from "@/types/category";
+import { CATEGORIES_WITHOUT_EXAMPLES } from "@/constants/categories.constant";
 import StartAI from "@/assets/svg/star-ai.svg";
 import Image from "next/image";
 
@@ -33,13 +34,15 @@ export const MainContainer = () => {
 
   const examplesCount = tip?.examples?.length ?? 0;
 
-  if (!tip) return <Skeleton className="mb-3 h-52 w-4/9" />;
+  if (!tip) return <Skeleton className="mb-3 h-52 w-full lg:w-4/9" />;
 
   return (
-    <div className="max-w-4/9 min-w-4/9 rounded-3xl bg-[#171717] p-6">
+    <div className="w-full rounded-3xl bg-[#171717] p-4 md:p-6 lg:max-w-4/9 lg:min-w-4/9">
       <div className={"mb-1 flex items-center gap-3"}>
         <Image src={StartAI} alt="Logo" width={24} height={24} />
-        <h2 className="text-lg font-bold">{tip.title}</h2>
+        <h2 data-testid="tip-title" className="text-lg font-bold">
+          {tip.title}
+        </h2>
       </div>
 
       <p className="font-light text-white">{tip.description}</p>
@@ -76,6 +79,7 @@ export const MainContainer = () => {
                 border: "1px solid #d6d3d1",
                 margin: 0,
                 backgroundColor: "#282c34",
+                overflowX: "auto",
               }}
               wrapLines
               showLineNumbers={false}
@@ -145,21 +149,23 @@ export const MainContainer = () => {
           <CategoryBadge type={tip.category as Category} />
         </div>
 
-        {examplesCount > 0 && (
-          <button
-            className="btn btn-link flex items-center gap-2 no-underline"
-            onClick={showExamplesToggle}
-          >
-            <span className={"text-white"}>
-              {examplesCount} example{examplesCount > 1 ? "s" : ""}
-            </span>
-            {showExamples ? (
-              <IoIosArrowUp color={"white"} />
-            ) : (
-              <IoIosArrowDown color={"white"} />
-            )}
-          </button>
-        )}
+        {examplesCount > 0 &&
+          !CATEGORIES_WITHOUT_EXAMPLES.includes(tip.category as Category) && (
+            <button
+              data-testid="examples-toggle"
+              className="btn btn-link flex items-center gap-2 no-underline"
+              onClick={showExamplesToggle}
+            >
+              <span className={"text-white"}>
+                {examplesCount} example{examplesCount > 1 ? "s" : ""}
+              </span>
+              {showExamples ? (
+                <IoIosArrowUp color={"white"} />
+              ) : (
+                <IoIosArrowDown color={"white"} />
+              )}
+            </button>
+          )}
       </div>
     </div>
   );
