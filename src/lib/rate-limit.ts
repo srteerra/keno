@@ -1,5 +1,6 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import type { NextRequest } from "next/server";
 
 let ratelimit: Ratelimit | null = null;
 
@@ -18,10 +19,10 @@ export function getRatelimit(): Ratelimit | null {
   return ratelimit;
 }
 
-export function getClientIp(request: Request): string {
+export function getClientIp(request: NextRequest): string {
+  const ip = (request as NextRequest & { ip?: string }).ip;
+  if (ip) return ip;
   const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) {
-    return forwarded.split(",")[0].trim();
-  }
+  if (forwarded) return forwarded.split(",")[0].trim();
   return request.headers.get("x-real-ip") ?? "anonymous";
 }
