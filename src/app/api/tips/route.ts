@@ -17,25 +17,13 @@ interface GenerateTipRequest {
 }
 
 export async function POST(request: NextRequest) {
-  console.log(
-    "[env-debug] UPSTASH_URL:",
-    !!process.env.UPSTASH_REDIS_REST_URL,
-    "UPSTASH_TOKEN:",
-    !!process.env.UPSTASH_REDIS_REST_TOKEN
-  );
   const rl = getRatelimit();
+
   if (rl) {
     try {
       const ip = getClientIp(request);
-      const { success, reset, remaining } = await rl.limit(ip);
-      console.log(
-        "[rate-limit] ip:",
-        ip,
-        "success:",
-        success,
-        "remaining:",
-        remaining
-      );
+      const { success, reset } = await rl.limit(ip);
+
       if (!success) {
         const retryAfter = Math.ceil((reset - Date.now()) / 1000);
         return NextResponse.json(
