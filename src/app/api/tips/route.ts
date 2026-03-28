@@ -10,21 +10,29 @@ import {
 import type { Category } from "@/types/category";
 import { API_ERRORS } from "@/constants/errors.constant";
 import { nextErrorResponse } from "@/lib/helpers/nextErrorResponse.helper";
-import { getRatelimit, getClientIp } from "@/lib/rate-limit";
+import { getLimiters, getClientIp, isAllowedOrigin } from "@/lib/rate-limit";
 
 interface GenerateTipRequest {
   category: Category;
 }
 
 export async function POST(request: NextRequest) {
-  const rl = getRatelimit();
+  if (!isAllowedOrigin(request)) {
+    return nextErrorResponse(API_ERRORS.FORBIDDEN);
+  }
 
-  if (rl) {
+  const limiters = getLimiters();
+  if (limiters) {
     try {
-      const ip = getClientIp(request);
-      const { success, reset } = await rl.limit(ip);
+      const [globalResult, ipResult] = await Promise.all([
+        limiters.global.limit("global"),
+        limiters.perIp.limit(getClientIp(request)),
+      ]);
 
-      if (!success) {
+      if (!globalResult.success || !ipResult.success) {
+        const reset = !globalResult.success
+          ? globalResult.reset
+          : ipResult.reset;
         const retryAfter = Math.ceil((reset - Date.now()) / 1000);
         return NextResponse.json(
           { error: API_ERRORS.RATE_LIMITED.message },
@@ -34,8 +42,8 @@ export async function POST(request: NextRequest) {
           }
         );
       }
-    } catch (rlError) {
-      console.error("[rate-limit] Redis error:", rlError);
+    } catch (e) {
+      console.error("[rate-limit] Redis error:", e);
     }
   }
 
