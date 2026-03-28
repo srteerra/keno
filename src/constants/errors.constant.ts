@@ -23,4 +23,8 @@ export const API_ERRORS = {
     message: "Too many requests. Please try again later.",
     status: 429,
   },
+  FORBIDDEN: {
+    message: "Forbidden",
+    status: 403,
+  },
 } as const;
