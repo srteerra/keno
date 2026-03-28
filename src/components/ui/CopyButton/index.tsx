@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { FaRegCopy } from "react-icons/fa6";
-import toast from "react-hot-toast";
+import { useToast } from "@/hooks/useToast";
 
 interface Props {
   text: string;
@@ -9,14 +9,11 @@ interface Props {
 
 export const CopyButton = ({ text }: Props) => {
   const [copied, setCopied] = useState(false);
+  const toast = useToast();
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(text);
-
-    toast.success("Copied!", {
-      position: "bottom-center",
-    });
-
+    toast.success("Copied!");
     setCopied(true);
     setTimeout(() => setCopied(false), 1200);
   };
