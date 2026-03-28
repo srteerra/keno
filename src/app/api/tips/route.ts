@@ -19,17 +19,21 @@ interface GenerateTipRequest {
 export async function POST(request: NextRequest) {
   const rl = getRatelimit();
   if (rl) {
-    const ip = getClientIp(request);
-    const { success, reset } = await rl.limit(ip);
-    if (!success) {
-      const retryAfter = Math.ceil((reset - Date.now()) / 1000);
-      return NextResponse.json(
-        { error: API_ERRORS.RATE_LIMITED.message },
-        {
-          status: 429,
-          headers: { "Retry-After": String(retryAfter) },
-        }
-      );
+    try {
+      const ip = getClientIp(request);
+      const { success, reset } = await rl.limit(ip);
+      if (!success) {
+        const retryAfter = Math.ceil((reset - Date.now()) / 1000);
+        return NextResponse.json(
+          { error: API_ERRORS.RATE_LIMITED.message },
+          {
+            status: 429,
+            headers: { "Retry-After": String(retryAfter) },
+          }
+        );
+      }
+    } catch (rlError) {
+      console.error("[rate-limit] Redis error:", rlError);
     }
   }
 
