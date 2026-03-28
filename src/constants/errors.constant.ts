@@ -19,4 +19,8 @@ export const API_ERRORS = {
     message: "Internal server error",
     status: 500,
   },
+  RATE_LIMITED: {
+    message: "Too many requests. Please try again later.",
+    status: 429,
+  },
 } as const;
