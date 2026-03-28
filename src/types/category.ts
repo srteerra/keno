@@ -3,5 +3,10 @@ export enum Category {
   TERMINAL = "terminal",
   EDITOR = "editor",
   REACT = "react",
+  TYPESCRIPT = "typescript",
+  JAVASCRIPT = "javascript",
+  DOCKER = "docker",
+  DEVTOOLS = "devtools",
+  SQL = "sql",
   CSS = "css",
 }

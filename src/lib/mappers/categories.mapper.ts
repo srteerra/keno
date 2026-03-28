@@ -10,6 +10,11 @@ const bgColor = (category: Category): string => {
     [Category.GIT_COMMAND]: baseBgColor,
     [Category.REACT]: "rgba(97,218,251,0.22)",
     [Category.CSS]: "rgba(38,77,228,0.22)",
+    [Category.TYPESCRIPT]: "rgba(49,120,198,0.28)",
+    [Category.JAVASCRIPT]: "rgba(247,223,30,0.22)",
+    [Category.DOCKER]: "rgba(30,136,229,0.24)",
+    [Category.DEVTOOLS]: "rgba(66,183,133,0.22)",
+    [Category.SQL]: "rgba(150,80,230,0.22)",
   };
 
   return map[category] || baseBgColor;
@@ -22,6 +27,11 @@ const color = (category: Category): string => {
     [Category.GIT_COMMAND]: baseColor,
     [Category.REACT]: "#61dafb",
     [Category.CSS]: "#264de4",
+    [Category.TYPESCRIPT]: "#3178c6",
+    [Category.JAVASCRIPT]: "#f7df1e",
+    [Category.DOCKER]: "#1e88e5",
+    [Category.DEVTOOLS]: "#42b785",
+    [Category.SQL]: "#a855f7",
   };
 
   return map[category] || baseColor;
@@ -34,6 +44,11 @@ const labels = (category: Category): string => {
     [Category.GIT_COMMAND]: "Git Command",
     [Category.REACT]: "React",
     [Category.CSS]: "CSS",
+    [Category.TYPESCRIPT]: "TypeScript",
+    [Category.JAVASCRIPT]: "JavaScript",
+    [Category.DOCKER]: "Docker",
+    [Category.DEVTOOLS]: "DevTools",
+    [Category.SQL]: "SQL",
   };
 
   return map[category] || "Unknown";
