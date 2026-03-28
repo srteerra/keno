@@ -1,8 +1,1 @@
-branch=$(git symbolic-ref --short HEAD)
-
-if [ "$branch" = "master" ]; then
-  echo "Direct push to master is not allowed. Use a pull request."
-  exit 1
-fi
-
 npm run type-check && npm run lint:check && npm run format:check
