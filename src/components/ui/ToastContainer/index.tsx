@@ -1,5 +1,10 @@
 "use client";
-import { useToastStore, type Toast, type ToastVertical, type ToastHorizontal } from "@/stores/toast.store";
+import {
+  useToastStore,
+  type Toast,
+  type ToastVertical,
+  type ToastHorizontal,
+} from "@/stores/toast.store";
 
 type Position = `${ToastVertical}-${ToastHorizontal}`;
 
@@ -23,13 +28,16 @@ export const ToastContainer = ({
 
   if (toasts.length === 0) return null;
 
-  const groups = toasts.reduce<Record<Position, Toast[]>>((acc, toast) => {
-    const v = toast.position?.vertical ?? defaultVertical;
-    const h = toast.position?.horizontal ?? defaultHorizontal;
-    const key: Position = `${v}-${h}`;
-    acc[key] = [...(acc[key] ?? []), toast];
-    return acc;
-  }, {} as Record<Position, Toast[]>);
+  const groups = toasts.reduce<Record<Position, Toast[]>>(
+    (acc, toast) => {
+      const v = toast.position?.vertical ?? defaultVertical;
+      const h = toast.position?.horizontal ?? defaultHorizontal;
+      const key: Position = `${v}-${h}`;
+      acc[key] = [...(acc[key] ?? []), toast];
+      return acc;
+    },
+    {} as Record<Position, Toast[]>
+  );
 
   return (
     <>
@@ -38,7 +46,10 @@ export const ToastContainer = ({
         return (
           <div key={pos} className={`toast toast-${v} toast-${h} z-50`}>
             {group.map((toast) => (
-              <div key={toast.id} className={`alert ${alertClass[toast.type]} text-sm`}>
+              <div
+                key={toast.id}
+                className={`alert ${alertClass[toast.type]} text-sm`}
+              >
                 <span>{toast.message}</span>
               </div>
             ))}
