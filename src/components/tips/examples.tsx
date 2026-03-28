@@ -17,15 +17,21 @@ export const Examples = () => {
   }
 
   return (
-    <div className="mt-4 max-w-4/9 min-w-4/9 space-y-3 rounded-3xl bg-[#171717] p-6">
+    <div
+      data-testid="examples-list"
+      className="mt-4 w-full space-y-3 rounded-3xl bg-[#171717] p-4 md:p-6 lg:max-w-4/9 lg:min-w-4/9"
+    >
       {tip.examples.map((ex, i) => {
         const { lead, mainCode, restMarkdown } = extractBlockHelper(
           ex?.details_markdown
         );
 
         return (
-          <div key={i} className="p-2">
-            <h3 className="text-md mb-2">
+          <div key={i} data-testid={`example-item-${i}`} className="p-2">
+            <h3
+              data-testid={`example-explanation-${i}`}
+              className="text-md mb-2"
+            >
               <strong>{i + 1}</strong>. {ex.explanation}
             </h3>
 
@@ -61,6 +67,7 @@ export const Examples = () => {
                       border: "1px solid #d6d3d1",
                       margin: 0,
                       backgroundColor: "#282c34",
+                      overflowX: "auto",
                     }}
                     wrapLines
                     showLineNumbers={false}
