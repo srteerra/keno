@@ -26,6 +26,20 @@ export default defineConfig([
     ],
   },
   {
+    files: ["src/__tests__/**/*.{ts,tsx}", "e2e/**/*.ts"],
+    rules: {
+      "@typescript-eslint/require-await": "off",
+      "@typescript-eslint/unbound-method": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
+      ],
+    },
+  },
+  {
     files: ["**/*.tsx"],
     rules: {
       "react-hooks/exhaustive-deps": "off",
