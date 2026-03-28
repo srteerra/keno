@@ -17,6 +17,12 @@ interface GenerateTipRequest {
 }
 
 export async function POST(request: NextRequest) {
+  console.log(
+    "[env-debug] UPSTASH_URL:",
+    !!process.env.UPSTASH_REDIS_REST_URL,
+    "UPSTASH_TOKEN:",
+    !!process.env.UPSTASH_REDIS_REST_TOKEN
+  );
   const rl = getRatelimit();
   if (rl) {
     try {
