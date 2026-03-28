@@ -21,16 +21,20 @@ export default function Home() {
   const handleError = (e: unknown) => {
     const msg = e instanceof Error ? e.message : "";
     if (msg === "RATE_LIMITED") {
-      toast.error("Sorry, too many requests. (10 req/min)");
+      toast.error("Sorry, too many requests. (10 req/min)", { vertical: "bottom", horizontal: "end" });
     } else {
       toast.error("Failed to get a tip. Please try again.");
     }
   };
 
   const handleNewTip = async (type: Category) => {
+    const previousTip = useTipStore.getState().tip;
     try {
       await getTip(type);
     } catch (e) {
+      if (e instanceof Error && e.message === "RATE_LIMITED" && previousTip) {
+        useTipStore.getState().setTip(previousTip);
+      }
       handleError(e);
     }
   };
@@ -41,7 +45,7 @@ export default function Home() {
 
   return (
     <main className="mt-10 mb-20 flex flex-col items-center justify-center px-4 md:mt-18 md:mb-32 lg:px-0">
-      <Keno />
+      <Keno/>
 
       <div
         className="my-6 flex w-full flex-wrap justify-center gap-2 lg:max-w-4/9"
@@ -57,9 +61,9 @@ export default function Home() {
         ))}
       </div>
 
-      <MainContainer />
+      <MainContainer/>
 
-      {showExamples && examplesCount > 0 && <Examples />}
+      {showExamples && examplesCount > 0 && <Examples/>}
 
       <div className={"mt-5"}>
         <small data-testid="ai-disclaimer">
