@@ -1,9 +1,8 @@
-echo '🚀 Analyzing all before push...'
+branch=$(git symbolic-ref --short HEAD)
 
-echo '🔍 Analyzing TypeScript...'
-npm run type-check && npm run lint || (
-  echo '❌ TypeScript found errors!'
-  false
-)
+if [ "$branch" = "master" ]; then
+  echo "Direct push to master is not allowed. Use a pull request."
+  exit 1
+fi
 
-echo '✅ All good!'
+npm run type-check && npm run lint:check && npm run format:check
