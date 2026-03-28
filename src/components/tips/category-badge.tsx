@@ -1,5 +1,10 @@
 import { FaCode, FaGitAlt, FaCss3Alt, FaReact, FaDocker } from "react-icons/fa";
-import { SiGnubash, SiTypescript, SiJavascript, SiPostgresql } from "react-icons/si";
+import {
+  SiGnubash,
+  SiTypescript,
+  SiJavascript,
+  SiPostgresql,
+} from "react-icons/si";
 import { VscDebugAlt } from "react-icons/vsc";
 import { Category } from "@/types/category";
 import { MapCategory } from "@/lib/mappers/categories.mapper";
