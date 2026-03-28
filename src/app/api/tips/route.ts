@@ -21,7 +21,15 @@ export async function POST(request: NextRequest) {
   if (rl) {
     try {
       const ip = getClientIp(request);
-      const { success, reset } = await rl.limit(ip);
+      const { success, reset, remaining } = await rl.limit(ip);
+      console.log(
+        "[rate-limit] ip:",
+        ip,
+        "success:",
+        success,
+        "remaining:",
+        remaining
+      );
       if (!success) {
         const retryAfter = Math.ceil((reset - Date.now()) / 1000);
         return NextResponse.json(
