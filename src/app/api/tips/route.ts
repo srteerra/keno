@@ -11,13 +11,27 @@ import type { Category } from "@/types/category";
 import { API_ERRORS } from "@/constants/errors.constant";
 import { nextErrorResponse } from "@/lib/helpers/nextErrorResponse.helper";
 import { getLimiters, getClientIp, isAllowedOrigin } from "@/lib/rate-limit";
+import { verifyToken } from "@/lib/request-token";
 
 interface GenerateTipRequest {
   category: Category;
 }
 
+const BLOCKED_USER_AGENTS =
+  /python-requests|curl\/|wget\/|PostmanRuntime|Go-http-client/i;
+
 export async function POST(request: NextRequest) {
   if (!isAllowedOrigin(request)) {
+    return nextErrorResponse(API_ERRORS.FORBIDDEN);
+  }
+
+  const ua = request.headers.get("user-agent");
+  if (!ua || BLOCKED_USER_AGENTS.test(ua)) {
+    return nextErrorResponse(API_ERRORS.FORBIDDEN);
+  }
+
+  const token = request.headers.get("x-request-token");
+  if (!(await verifyToken(token))) {
     return nextErrorResponse(API_ERRORS.FORBIDDEN);
   }
 
